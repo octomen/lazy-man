@@ -1,10 +1,9 @@
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
 
-engine = sa.create_engine('sqlite://')
-session = scoped_session(sessionmaker(bind=engine))
+# engine = sa.create_engine('sqlite://')
+engine = sa.create_engine('postgres://postgres@localhost:5432/postgres')
 Base = declarative_base()
 
 
@@ -47,7 +46,3 @@ class T3(Base):
     number = sa.Column(sa.Integer)
 
     t2 = so.relationship(T2)
-
-
-Base.metadata.create_all(engine)
-
